@@ -32,17 +32,18 @@ public class Main {
 class Solution {
     int findMaxSum(int arr[], int n) {
         int[] dp = new int[n];
-        Arrays.fill(dp , -1);
-        return f(n-1 , arr , dp);
-    }
-    
-    static int f(int ind , int arr[] , int[] dp){
-        if(ind == 0) return arr[ind];
-        if(ind < 0) return 0;
-        if(dp[ind] != -1) return dp[ind];
-        int pick = arr[ind] + f(ind - 2 , arr , dp);
-        int notPick = 0 + f(ind - 1 , arr, dp);
+        dp[0] = arr[0];
+       
+       for(int ind = 1 ; ind < n ; ind++){ 
+            int pick = arr[ind] + (ind > 1 ? dp[ind - 2] : 0);
+            int notPick = 0 + dp[ind - 1];
+            dp[ind] = Math.max(pick , notPick);
+       }
+       return dp[n-1];
         
-        return dp[ind] = Math.max(pick , notPick);
     }
+        
+        
+        
+    
 }
