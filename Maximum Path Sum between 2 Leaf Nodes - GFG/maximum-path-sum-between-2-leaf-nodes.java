@@ -133,12 +133,15 @@ class Solution
         int left = helper(root.left);
         int right = helper(root.right);
         if(root.left == null && root.right == null) return root.data;
+        
+        if (root.left != null && root.right != null) {
+            max = Math.max(max, (left + right + root.data));
+            return Math.max(left, right) + root.data;
+        }
+        
         if(root.left == null ) return right + root.data;
-        if(root.right == null ) return left + root.data;
-        max =Math.max( max , root.data + left + right);
-        if (left > right)
-           return left + root.data;
-       else return right + root.data;
+        else return left + root.data;
+       
 
     }
 }
