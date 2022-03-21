@@ -1,5 +1,4 @@
 class Solution {
-    private final Random rnd = new Random();
     private void swap(int[] a, int x, int y){
        int temp = a[x];
         a[x] = a[y];
@@ -14,7 +13,7 @@ class Solution {
                 swap(a,i,j++);
             }
         }
-        
+        // System.out.println(pivot + " " + Arrays.toString(a));
         return j-1;
         
     }
@@ -25,13 +24,13 @@ class Solution {
         
         while(l < r){
             int pivot = nums[r];
-            int high = partition(nums,pivot ,l,r);
+            int pi = partition(nums,pivot ,l,r);
             
-            if(high == index) break;
+            if(pi == index) break;
             
-            else if(high < index) l = high + 1;
+            else if(pi < index) l = pi + 1;
             
-            else r = high - 1;
+            else r = pi - 1;
         }
         return nums[index];
     }
