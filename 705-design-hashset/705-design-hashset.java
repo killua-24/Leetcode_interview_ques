@@ -1,19 +1,19 @@
 class MyHashSet {
-    Set<Integer> set;
+    int[] entry;
     public MyHashSet() {
-       set = new HashSet<>();
+       entry = new int[1000007];
     }
     
     public void add(int key) {
-        set.add(key);
+        entry[key]= 1;
     }
     
     public void remove(int key) {
-        set.remove(key);
+        entry[key]= 0;
     }
     
     public boolean contains(int key) {
-        return set.contains(key);
+        return entry[key] == 1;
     }
 }
 
