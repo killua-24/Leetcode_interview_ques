@@ -23,8 +23,7 @@ class Solution {
             edges++;
             
             for (int it = 0; it < n; ++it) {
-                // If next node is not in MST, then edge from curr node
-                // to next node can be pushed in the priority queue.
+               
                 if (!vis[it]) {
                     int newCost = Math.abs(points[node][0] - points[it][0]) + 
                                      Math.abs(points[node][1] - points[it][1]);
