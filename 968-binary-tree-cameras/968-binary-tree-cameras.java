@@ -15,26 +15,27 @@
  */
 class Solution {
     private int camera = 0;
+    
+    public enum Camera{HAVE , NEED , COVERED};
     public int minCameraCover(TreeNode root) {
         
-        if(minCamera(root) == -1) camera++;
-        return camera;
+        return (minCamera(root) == Camera.NEED) ? ++camera : camera;
     }
     
-    private int minCamera(TreeNode root){
-        if(root == null) return 1;
+    private Camera minCamera(TreeNode root){
+        if(root == null) return Camera.COVERED;
         
-        int left = minCamera(root.left);
-        int right = minCamera(root.right);
+        Camera left = minCamera(root.left);
+        Camera right = minCamera(root.right);
         
-        if(left == -1 || right == -1){
+        if(left == Camera.NEED || right == Camera.NEED){
             camera++;
-            return 0;
+            return Camera.HAVE;
         }
         
-        if(left == 0 || right == 0){
-            return 1;
+        if(left == Camera.HAVE || right == Camera.HAVE){
+            return Camera.COVERED;
         }
-        return -1;
+        return Camera.NEED;
     }
 }
