@@ -3,7 +3,17 @@ class Solution {
         if(nums.length == 1) return nums[0] > target ? 0 : 1;
         int[] dp = new int[target +1];
         Arrays.fill(dp,-1);
-        return helper( nums , target,dp);
+        dp[0] = 1;
+        for(int t = 1 ; t <= target ; t++){
+            int ans = 0;
+            for(int i = 0 ; i < nums.length ;i++){
+                if(nums[i] > t) continue;
+                ans += dp[ t - nums[i] ];
+            }
+            dp[t] = ans;
+        }
+        
+        return dp[target];
      
     }
     
